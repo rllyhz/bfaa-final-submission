@@ -1,7 +1,8 @@
-package id.rllyhz.dicodingsubmissionbfaa
+package id.rllyhz.dicodingsubmissionbfaa.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import id.rllyhz.dicodingsubmissionbfaa.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
