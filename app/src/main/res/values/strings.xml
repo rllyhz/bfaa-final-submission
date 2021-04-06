@@ -1,6 +1,74 @@
 <resources>
     <string name="app_name">Dicoding Submission BFAA</string>
+
+    <!-- for actionbar -->
+    <string name="action_bar_title_home">Home</string>
+    <string name="action_bar_title_explore">Explore</string>
+    <string name="action_bar_title_profile">Profile</string>
+    <string name="action_bar_title_user_detail">User Detail</string>
+
+    <!-- for headline in home ui -->
+    <string name="headline_1_text">Find your developers to make the world more intelligent!</string>
+    <string name="headline_2_text">23.4 million more developers available around the world</string>
+    <string name="home_user_list_label">People you may know</string>
+
+    <!-- for bottom nav -->
     <string name="bottom_nav_menu_home">Home</string>
     <string name="bottom_nav_menu_explore">Explore</string>
     <string name="bottom_nav_menu_profile">Profile</string>
+
+    <!-- for item user ui -->
+    <string name="item_user_username">jakeWraton</string>
+    <string name="item_user_detail_icon_content_description">Detail Button</string>
+    <string name="item_user_content_description_format">%d photo</string>
+
+    <!-- for user detail ui -->
+    <string name="user_detail_fullname">Rully Ihza Mahendra</string>
+    <string name="user_detail_username">rllyhz</string>
+    <string name="user_detail_company_name">Soal-Web</string>
+    <string name="user_detail_location">Semarang, Central Java, Indonesia.</string>
+    <string name="user_detaill_bio_label">Bio</string>
+    <string name="user_detail_bio">Take a deep breath for better ideas ☺</string>
+    <string name="user_detail_blog">rllyhz.github.io</string>
+    <string name="user_detail_following_followers">18 followers - 22 followings</string>
+    <string name="user_detail_repository">43 repositories</string>
+    <plurals name="user_detail_repository_format">
+        <item quantity="one">%d repository</item>
+        <item quantity="other">%d repositories</item>
+    </plurals>
+    <string name="user_detail_following_followers_format">%s followers - %s followings</string>
+    <string name="user_detail_following_label">Following</string>
+    <string name="user_detail_followers_label">Followers</string>
+
+    <string name="user_detail_content_desc_location_icon">Location Icon</string>
+    <string name="user_detail_content_desc_company_icon">Company Icon</string>
+    <string name="user_detail_content_desc_blog_url_icon">Blog Url Icon</string>
+    <string name="user_detail_content_desc_follows_icon">Follows Icon</string>
+    <string name="user_detail_content_desc_repository_icon">Repository Icon</string>
+
+    <string name="profile_following_label">Following</string>
+    <string name="profile_following_count">3.3k</string>
+    <string name="profile_followers_label">Followers</string>
+    <string name="profile_followers_count">4.54M</string>
+    <string name="profile_repository_label">Repository</string>
+    <string name="profile_repository_count">234</string>
+    <string name="profile_edit_button_text">Edit Profile</string>
+
+    <string name="explore_search_hint">Search your developers…</string>
+    <string name="explore_user_list_label">Result</string>
+    <string name="explore_content_desc_search_icon">Search Icon</string>
+    <string name="explore_content_desc_illustration_icon">Illustration Explore the world</string>
+    <string name="explore_headline">Explore The World and Find Your Developers</string>
+
+    <!-- for feedback message -->
+    <string name="error_message_label">Error</string>
+    <string name="error_message">Sorry, something went wrong :(</string>
+    <string name="redirect_message">Sorry, unauthorized activity</string>
+    <string name="error_message_description">This happens maybe because of there is no connection or something unexpected internally occurred.</string>
+    <string name="success_message">Successfully fetched!</string>
+    <string name="result_not_found_message">Result not found!</string>
+    <string name="functionality_not_implemented_message">This functionality hasn\'t been implemented yet</string>
+
+    <string name="toolbar_menu_item_change_language_label">Change Language</string>
+    <string name="content_description_logo">Logo App</string>
 </resources>
