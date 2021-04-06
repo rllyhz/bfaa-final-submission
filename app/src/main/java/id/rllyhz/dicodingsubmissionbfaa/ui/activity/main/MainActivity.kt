@@ -1,4 +1,4 @@
-package id.rllyhz.dicodingsubmissionbfaa.ui
+package id.rllyhz.dicodingsubmissionbfaa.ui.activity.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
