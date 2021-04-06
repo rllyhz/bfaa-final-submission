@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyTextBold" parent="TextAppearance.AppCompat.Large">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="MyTextMedium" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="MyTextRegular" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="MyTextBold.ErrorText">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyTextMedium.ErrorDescriptionText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyTextBold.HomeHeadline1">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyTextMedium.HomeHeadline2">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/grey_lighter</item>
+    </style>
+
+    <style name="MyTextBold.HomeUserListLabel">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/grey_lighter</item>
+    </style>
+
+    <style name="MyTextMedium.ItemUserUsername">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="MyTextBold.UserDetailFullname">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyTextMedium.UserDetailUsername">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/grey_light</item>
+    </style>
+
+    <style name="MyTextMedium.UserDetailOther">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyTextBold.ProfilelFullname">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyTextMedium.ProfileUsername">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/grey_light</item>
+    </style>
+
+    <style name="MyTextMedium.ProfileOther">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyTextRegular.ProfileOther">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/grey_light</item>
+    </style>
+
+    <style name="MyTextBold.ExploreHeadline">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/grey_light</item>
+    </style>
+
+    <style name="MyTextBold.ExploreFeedback">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyTextMedium.ExploreUserListLabel">
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@color/grey_lighter</item>
+    </style>
+
+</resources>
