@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="HeadlineContainerBackgroundShape">
+        <item name="cornerSizeBottomRight">32%</item>
+        <item name="cornerSizeBottomLeft">5%</item>
+        <item name="cornerSizeTopRight">5%</item>
+        <item name="cornerSizeTopLeft">5%</item>
+    </style>
+</resources>
