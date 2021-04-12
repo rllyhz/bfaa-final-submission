@@ -27,7 +27,15 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.findNavController()
 
+        setupActionBar()
         setupBottomNavigationView()
+    }
+
+    private fun setupActionBar() {
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_arrow_left)
+        }
     }
 
     private fun setupBottomNavigationView() {
