@@ -24,9 +24,6 @@ class HomeViewModel @Inject constructor(
     private val dispatchers: DispacherProvider
 ) : ViewModel() {
 
-    private val _isTheFirstTime = MutableLiveData(true)
-    val isTheFirstTime: LiveData<Boolean> = _isTheFirstTime
-
     private val _usersLiveData = MutableLiveData<List<User>>()
     val usersLiveData: LiveData<List<User>> = _usersLiveData
 

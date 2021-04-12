@@ -50,9 +50,7 @@ class HomeFragment : Fragment(), UserListAdapter.ItemClickCallback {
             usersAdapter?.submitList(users)
         }
 
-        viewModel.isTheFirstTime.observe(requireActivity()) { state ->
-            if (state) viewModel.loadUsers()
-        }
+        viewModel.loadUsers()
     }
 
     override fun onDestroy() {
