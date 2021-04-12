@@ -27,4 +27,20 @@ class MainRepository @Inject constructor(
             Resource.Error(application.getString(R.string.error_message))
         }
     }
+
+    suspend fun getUserDetailOf(username: String): Resource<User> {
+        return try {
+            val response = githubApi.getUserDetailOf(username)
+            val usersResponse = response.body()
+
+            if (response.isSuccessful && usersResponse != null) {
+                val allUsers = DataConverter.userDetailResponseToUserModel(usersResponse)
+                Resource.Success(allUsers)
+            } else {
+                Resource.Error(response.message())
+            }
+        } catch (e: Exception) {
+            Resource.Error(application.getString(R.string.error_message))
+        }
+    }
 }

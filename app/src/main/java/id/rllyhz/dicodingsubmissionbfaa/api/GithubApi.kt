@@ -1,7 +1,7 @@
 package id.rllyhz.dicodingsubmissionbfaa.api
 
-import id.rllyhz.dicodingsubmissionbfaa.data.model.User
 import id.rllyhz.dicodingsubmissionbfaa.data.response.SearchUsersResponse
+import id.rllyhz.dicodingsubmissionbfaa.data.response.UserDetailResponse
 import id.rllyhz.dicodingsubmissionbfaa.data.response.UsersResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -14,22 +14,22 @@ interface GithubApi {
 
     @GET("users/{username}")
     suspend fun getUserDetailOf(
-            @Path("username") username: String
-    ): Response<User>
+        @Path("username") username: String
+    ): Response<UserDetailResponse>
 
     @GET("users/{username}/following")
     suspend fun getFollowingOfUser(
-            @Path("username") username: String
+        @Path("username") username: String
     ): Response<List<UsersResponse>>
 
     @GET("users/{username}/followers")
     suspend fun getFollowersOfUser(
-            @Path("username") username: String
+        @Path("username") username: String
     ): Response<List<UsersResponse>>
 
     @GET("search/users")
     suspend fun searchUsers(
-            @Query("q") query: String
+        @Query("q") query: String
     ): Response<SearchUsersResponse>
 
 
