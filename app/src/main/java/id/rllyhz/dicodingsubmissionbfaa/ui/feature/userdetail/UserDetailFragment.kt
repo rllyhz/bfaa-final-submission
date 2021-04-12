@@ -40,8 +40,6 @@ class UserDetailFragment : Fragment() {
 
         if (userExtra != null) {
             viewModel.getUser(userExtra.username)
-
-            setupActionBar()
             setupUI()
         } else {
             findNavController().navigateUp()
@@ -150,14 +148,6 @@ class UserDetailFragment : Fragment() {
 
             viewPagerUserDetail.visibility = View.GONE
             tabLayoutUserDetail.visibility = View.GONE
-        }
-    }
-
-    private fun setupActionBar() {
-        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
-            title = getString(R.string.action_bar_title_user_detail)
-            setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.ic_arrow_left)
         }
     }
 
