@@ -1,17 +1,16 @@
-package id.rllyhz.dicodingsubmissionbfaa.ui.feature.userdetail
+package id.rllyhz.dicodingsubmissionbfaa.ui.activity.detail
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
@@ -19,30 +18,33 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.data.model.User
-import id.rllyhz.dicodingsubmissionbfaa.databinding.FragmentUserDetailBinding
+import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityUserDetailBinding
 import id.rllyhz.dicodingsubmissionbfaa.ui.adapter.FollowingFollowersPagerAdapter
 import id.rllyhz.dicodingsubmissionbfaa.util.DataConverter
 import id.rllyhz.dicodingsubmissionbfaa.util.ResourceEvent
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class UserDetailFragment : Fragment() {
-    private lateinit var binding: FragmentUserDetailBinding
+class UserDetailActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityUserDetailBinding
     private lateinit var mAdapter: FollowingFollowersPagerAdapter
 
     private val viewModel: UserDetailViewModel by viewModels()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityUserDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        //val userExtra = intent.getParcelableExtra<User>(USER_EXTRAS)
-        val userExtra = User(1, "", "")
+        val userExtra = intent.getParcelableExtra<User>(USER_EXTRAS)
 
         if (userExtra != null) {
             viewModel.getUser(userExtra.username)
+
+            setupActionBar()
             setupUI()
         } else {
-            findNavController().navigateUp()
+            finish()
             showFeedback()
         }
     }
@@ -50,9 +52,9 @@ class UserDetailFragment : Fragment() {
     private fun setupUI() {
         binding.apply {
 
-            viewModel.user.observe(requireActivity()) { user ->
+            viewModel.user.observe(this@UserDetailActivity) { user ->
 
-                Glide.with(requireActivity())
+                Glide.with(this@UserDetailActivity)
                     .load(user.avatarUrl)
                     .apply(RequestOptions.placeholderOf(R.drawable.bg_placeholder_images))
                     .transition(DrawableTransitionOptions.withCrossFade())
@@ -91,8 +93,7 @@ class UserDetailFragment : Fragment() {
                 )
 
                 // also set pager adapter
-                mAdapter =
-                    FollowingFollowersPagerAdapter(requireActivity() as AppCompatActivity, user)
+                mAdapter = FollowingFollowersPagerAdapter(this@UserDetailActivity, user)
                 viewPagerUserDetail.adapter = mAdapter
 
                 TabLayoutMediator(tabLayoutUserDetail, viewPagerUserDetail) { tab, position ->
@@ -151,16 +152,34 @@ class UserDetailFragment : Fragment() {
         }
     }
 
+    private fun setupActionBar() {
+        supportActionBar?.apply {
+            title = getString(R.string.action_bar_title_user_detail)
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_arrow_left)
+        }
+    }
+
     private fun showSwipeRefreshLayout(state: Boolean) {
         binding.swipeRefreshUserDetail.isRefreshing = state
     }
 
     private fun showFeedback() {
         Toast.makeText(
-            requireActivity().applicationContext,
+            applicationContext,
             resources.getString(R.string.redirect_message),
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 

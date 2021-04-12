@@ -5,7 +5,7 @@
     android:id="@+id/swipe_refresh_user_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.feature.userdetail.UserDetailFragment">
+    tools:context=".ui.activity.detail.UserDetailActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

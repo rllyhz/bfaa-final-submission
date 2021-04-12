@@ -1,5 +1,6 @@
 package id.rllyhz.dicodingsubmissionbfaa.ui.feature.explore
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.data.model.User
 import id.rllyhz.dicodingsubmissionbfaa.databinding.FragmentExploreBinding
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.detail.UserDetailActivity
 import id.rllyhz.dicodingsubmissionbfaa.ui.adapter.UserListAdapter
 import id.rllyhz.dicodingsubmissionbfaa.util.ResourceEvent
 import kotlinx.coroutines.flow.collect
@@ -200,7 +203,11 @@ class ExploreFragment : Fragment(), UserListAdapter.ItemClickCallback {
     }
 
     override fun onDetailIconClick(user: User) {
-        //TODO("Not yet implemented")
+        val userDetailIntent = Intent(requireActivity(), UserDetailActivity::class.java).apply {
+            putExtra(UserDetailActivity.USER_EXTRAS, user)
+        }
+
+        requireActivity().startActivity(userDetailIntent)
     }
 
     override fun onDestroy() {

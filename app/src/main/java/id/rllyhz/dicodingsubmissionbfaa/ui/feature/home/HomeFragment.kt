@@ -1,5 +1,6 @@
 package id.rllyhz.dicodingsubmissionbfaa.ui.feature.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.data.model.User
 import id.rllyhz.dicodingsubmissionbfaa.databinding.FragmentHomeBinding
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.detail.UserDetailActivity
 import id.rllyhz.dicodingsubmissionbfaa.ui.adapter.UserListAdapter
 import id.rllyhz.dicodingsubmissionbfaa.util.ResourceEvent
 import kotlinx.coroutines.flow.collect
@@ -138,10 +140,10 @@ class HomeFragment : Fragment(), UserListAdapter.ItemClickCallback {
     }
 
     override fun onDetailIconClick(user: User) {
-//        Intent(requireActivity(), UserDetailActivity::class.java).run {
-//            putExtra(UserDetailActivity.USER_EXTRAS, user)
-//
-//            requireActivity().startActivity(this)
-//        }
+        val userDetailIntent = Intent(requireActivity(), UserDetailActivity::class.java).apply {
+            putExtra(UserDetailActivity.USER_EXTRAS, user)
+        }
+
+        requireActivity().startActivity(userDetailIntent)
     }
 }

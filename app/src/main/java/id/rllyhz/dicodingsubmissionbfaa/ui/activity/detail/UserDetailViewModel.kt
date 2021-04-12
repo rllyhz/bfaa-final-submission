@@ -1,4 +1,4 @@
-package id.rllyhz.dicodingsubmissionbfaa.ui.feature.userdetail
+package id.rllyhz.dicodingsubmissionbfaa.ui.activity.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

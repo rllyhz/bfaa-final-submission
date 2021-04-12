@@ -21,15 +21,4 @@
         android:name="id.rllyhz.dicodingsubmissionbfaa.ui.feature.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/userDetailFragment"
-        android:name="id.rllyhz.dicodingsubmissionbfaa.ui.feature.userdetail.UserDetailFragment"
-        android:label="User Detail">
-        <argument
-            android:name="user"
-            app:argType="id.rllyhz.dicodingsubmissionbfaa.data.model.User" />
-    </fragment>
-    <action
-        android:id="@+id/action_global_userDetailFragment"
-        app:destination="@id/userDetailFragment" />
 </navigation>

@@ -1,5 +1,6 @@
 package id.rllyhz.dicodingsubmissionbfaa.ui.feature.following
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.data.model.User
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.detail.UserDetailActivity
 import id.rllyhz.dicodingsubmissionbfaa.ui.adapter.UserListAdapter
 import id.rllyhz.dicodingsubmissionbfaa.util.ResourceEvent
 import kotlinx.coroutines.flow.collect
@@ -104,7 +106,11 @@ class FollowingFragment : Fragment(R.layout.fragment_follows), UserListAdapter.I
     }
 
     override fun onDetailIconClick(user: User) {
-        //TODO("Not yet implemented")
+        val userDetailIntent = Intent(requireActivity(), UserDetailActivity::class.java).apply {
+            putExtra(UserDetailActivity.USER_EXTRAS, user)
+        }
+
+        requireActivity().startActivity(userDetailIntent)
     }
 
     companion object {
