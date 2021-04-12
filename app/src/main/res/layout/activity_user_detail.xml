@@ -47,6 +47,18 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_user_detail_fullname"
                 tools:text="@string/user_detail_username" />
 
+            <ToggleButton
+                android:id="@+id/btn_user_detail_fav"
+                android:layout_width="@dimen/user_detail_fav_icon_size"
+                android:layout_height="@dimen/user_detail_fav_icon_size"
+                android:background="@drawable/selector_ic_fav"
+                android:textOff=""
+                android:textOn=""
+                android:visibility="gone"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_user_detail_username"
+                tools:visibility="visible" />
+
             <TextView
                 android:id="@+id/tv_user_detail_bio_label"
                 style="@style/MyTextMedium.UserDetailOther"

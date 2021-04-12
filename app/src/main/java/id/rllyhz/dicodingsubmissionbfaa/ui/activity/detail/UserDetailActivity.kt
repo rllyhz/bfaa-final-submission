@@ -102,6 +102,15 @@ class UserDetailActivity : AppCompatActivity() {
                 }.attach()
 
 
+                btnUserDetailFav.setOnClickListener {
+                    if (btnUserDetailFav.isChecked) {
+                        Toast.makeText(this@UserDetailActivity, "Added", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@UserDetailActivity, "Removed", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+
                 // swiperefresh
                 swipeRefreshUserDetail.setOnRefreshListener {
                     viewModel.getUser(user.username)
@@ -120,7 +129,10 @@ class UserDetailActivity : AppCompatActivity() {
                             setupFailureUI()
                         }
                         is ResourceEvent.Loading -> showSwipeRefreshLayout(true)
-                        else -> showSwipeRefreshLayout(false)
+                        else -> {
+                            showSwipeRefreshLayout(false)
+                            btnUserDetailFav.visibility = View.GONE
+                        }
                     }
                 }
             }
@@ -131,6 +143,7 @@ class UserDetailActivity : AppCompatActivity() {
         binding.apply {
             viewPagerUserDetail.visibility = View.VISIBLE
             tabLayoutUserDetail.visibility = View.VISIBLE
+            btnUserDetailFav.visibility = View.VISIBLE
         }
     }
 
@@ -149,6 +162,7 @@ class UserDetailActivity : AppCompatActivity() {
 
             viewPagerUserDetail.visibility = View.GONE
             tabLayoutUserDetail.visibility = View.GONE
+            btnUserDetailFav.visibility = View.GONE
         }
     }
 
