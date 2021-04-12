@@ -1,9 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_refresh_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.feature.profile.ProfileFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/siv_profile_avatar"
+                android:layout_width="@dimen/user_detail_avatar_size"
+                android:layout_height="@dimen/user_detail_avatar_size"
+                android:layout_marginTop="32dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeableImageCircular"
+                app:srcCompat="@drawable/bg_placeholder_images" />
+
+            <TextView
+                android:id="@+id/tv_profile_fullname"
+                style="@style/MyTextBold.ProfilelFullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintLeft_toLeftOf="@id/siv_profile_avatar"
+                app:layout_constraintRight_toRightOf="@id/siv_profile_avatar"
+                app:layout_constraintTop_toBottomOf="@id/siv_profile_avatar"
+                tools:text="@string/user_detail_fullname" />
+
+            <TextView
+                android:id="@+id/tv_profile_username"
+                style="@style/MyTextMedium.ProfileUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/siv_profile_avatar"
+                app:layout_constraintRight_toRightOf="@id/siv_profile_avatar"
+                app:layout_constraintTop_toBottomOf="@id/tv_profile_fullname"
+                tools:text="@string/user_detail_username" />
+
+            <TextView
+                android:id="@+id/tv_profile_bio"
+                style="@style/MyTextRegular.ProfileOther"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                app:layout_constraintLeft_toLeftOf="@id/guideline2"
+                app:layout_constraintRight_toRightOf="@id/guideline3"
+                app:layout_constraintTop_toBottomOf="@id/tv_profile_username"
+                tools:text="@string/user_detail_bio" />
+
+            <LinearLayout
+                android:id="@+id/ll_profile_repo_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_margin_to_guideline_horizontal"
+                android:layout_marginEnd="@dimen/profile_follows_repo_margin"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toRightOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/guideline1">
+
+                <TextView
+                    android:id="@+id/tv_profile_repo_count"
+                    style="@style/MyTextMedium.ProfileOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/profile_repository_count" />
+
+                <TextView
+                    android:id="@+id/tv_profile_repo_label"
+                    style="@style/MyTextRegular.ProfileOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_repository_label" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_profile_followers_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_margin_to_guideline_horizontal"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline1">
+
+                <TextView
+                    android:id="@+id/tv_profile_followers_count"
+                    style="@style/MyTextMedium.ProfileOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/profile_followers_count" />
+
+                <TextView
+                    android:id="@+id/tv_profile_followers_label"
+                    style="@style/MyTextRegular.ProfileOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_followers_label" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_profile_following_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_follows_repo_margin"
+                android:layout_marginTop="@dimen/profile_margin_to_guideline_horizontal"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintRight_toLeftOf="@id/guideline3"
+                app:layout_constraintTop_toBottomOf="@id/guideline1">
+
+                <TextView
+                    android:id="@+id/tv_profile_following_count"
+                    style="@style/MyTextMedium.ProfileOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/profile_following_count" />
+
+                <TextView
+                    android:id="@+id/tv_profile_following_label"
+                    style="@style/MyTextRegular.ProfileOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_following_label" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mBtn_profile_edit_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/profile_margin_top_edit_button"
+                android:text="@string/profile_edit_button_text"
+                android:textAllCaps="false"
+                android:textColor="?attr/colorSecondary"
+                app:backgroundTint="@color/background_color_light"
+                app:layout_constraintLeft_toRightOf="@id/guideline2"
+                app:layout_constraintRight_toLeftOf="@id/guideline3"
+                app:layout_constraintTop_toBottomOf="@id/ll_profile_followers_container"
+                app:rippleColor="?attr/colorSecondary" />
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/background_color_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mBtn_profile_edit_profile"
+                app:tabIndicatorColor="?attr/colorSecondary"
+                app:tabSelectedTextColor="?attr/colorSecondary"
+                app:tabTextColor="@color/grey_light" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager_profile"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/profile_view_pager_height"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/guideline2"
+                app:layout_constraintRight_toLeftOf="@id/guideline3"
+                app:layout_constraintTop_toBottomOf="@id/tab_layout_profile" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/tv_profile_bio" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="24dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="24dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
