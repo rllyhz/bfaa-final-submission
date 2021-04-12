@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
                     _usersEvent.value = ResourceEvent.Success(null, null)
 
                     withContext(dispatchers.main) {
-                        _usersLiveData.value = usersResponse.data
+                        _usersLiveData.value = usersResponse.data!!
                     }
                 }
             }
