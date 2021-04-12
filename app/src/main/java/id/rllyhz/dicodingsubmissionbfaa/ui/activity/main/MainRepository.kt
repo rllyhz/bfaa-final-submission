@@ -43,4 +43,52 @@ class MainRepository @Inject constructor(
             Resource.Error(application.getString(R.string.error_message))
         }
     }
+
+    suspend fun getFollowersOfUser(username: String): Resource<List<User>> {
+        return try {
+            val response = githubApi.getFollowersOfUser(username)
+            val result = response.body()
+
+            if (response.isSuccessful && result != null) {
+                val users = DataConverter.usersResponseToUsersModel(result)
+                Resource.Success(users)
+            } else {
+                Resource.Error(response.message())
+            }
+        } catch (e: Exception) {
+            Resource.Error(application.getString(R.string.error_message))
+        }
+    }
+
+    suspend fun getFollowingOfUser(username: String): Resource<List<User>> {
+        return try {
+            val response = githubApi.getFollowingOfUser(username)
+            val result = response.body()
+
+            if (response.isSuccessful && result != null) {
+                val users = DataConverter.usersResponseToUsersModel(result)
+                Resource.Success(users)
+            } else {
+                Resource.Error(response.message())
+            }
+        } catch (e: Exception) {
+            Resource.Error(application.getString(R.string.error_message))
+        }
+    }
+
+    suspend fun searchUsers(query: String): Resource<List<User>> {
+        return try {
+            val response = githubApi.searchUsers(query)
+            val result = response.body()
+
+            if (response.isSuccessful && result != null) {
+                val users = DataConverter.searchUsersToUserModels(result)
+                Resource.Success(users)
+            } else {
+                Resource.Error(response.message())
+            }
+        } catch (e: Exception) {
+            Resource.Error(application.getString(R.string.error_message))
+        }
+    }
 }
