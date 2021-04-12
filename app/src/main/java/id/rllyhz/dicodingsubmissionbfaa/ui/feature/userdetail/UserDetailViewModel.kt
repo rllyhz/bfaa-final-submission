@@ -39,7 +39,7 @@ class UserDetailViewModel @Inject constructor(
                     _state.value = ResourceEvent.Success(null, userDetailResponse.data!!)
 
                     withContext(dispatchers.main) {
-                        _currentUser.value = userDetailResponse.data!!
+                        _currentUser.value = userDetailResponse.data
                     }
                 }
             }
