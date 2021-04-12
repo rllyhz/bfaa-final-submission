@@ -5,6 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
+import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.data.model.User
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ItemUserBinding
 
@@ -26,7 +30,18 @@ class UserListAdapter : ListAdapter<User, UserListAdapter.UserListViewHolder>(Us
     inner class UserListViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
-            //
+            binding.apply {
+                Glide.with(itemView)
+                    .load(user.avatarUrl)
+                    .apply(RequestOptions.placeholderOf(R.drawable.bg_placeholder_images))
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(sivItemUserAvatar)
+
+                tvItemUserUsername.text = user.username
+                itemView.setOnClickListener {
+                    callback?.onDetailIconClick(user)
+                }
+            }
         }
     }
 
