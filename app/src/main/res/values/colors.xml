@@ -8,6 +8,7 @@
 
     <color name="background_color_dark">#FF121212</color>
     <color name="background_color_light">#FF191C2F</color>
+    <color name="background_color_trans">#99191C2F</color>
     <color name="blue_200">#FF357DED</color>
     <color name="blue_500">#FF285FB5</color>
     <color name="blue_700">#FF14376F</color>
