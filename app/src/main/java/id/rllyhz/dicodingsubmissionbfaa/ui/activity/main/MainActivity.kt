@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.findNavController()
 
         setupBottomNavigationView()
@@ -30,11 +31,11 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNavigationView() {
         binding.apply {
             val appBarConfiguration = AppBarConfiguration(
-                    setOf(
-                            R.id.homeFragment,
-                            R.id.exploreFragment,
-                            R.id.profileFragment
-                    )
+                setOf(
+                    R.id.homeFragment,
+                    R.id.exploreFragment,
+                    R.id.profileFragment
+                )
             )
 
             setupActionBarWithNavController(navController, appBarConfiguration)
