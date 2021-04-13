@@ -70,6 +70,9 @@
     <string name="result_not_found_message">Result not found!</string>
     <string name="functionality_not_implemented_message">This functionality hasn\'t been implemented yet</string>
 
-    <string name="toolbar_menu_item_change_language_label">Change Language</string>
     <string name="content_description_logo">Logo App</string>
+
+    <string name="toolbar_menu_item_change_language_label">Change Language</string>
+    <string name="toolbar_menu_item_alarm_label">Alarm Setting</string>
+    <string name="toolbar_menu_item_user_fav_label">User Favourites</string>
 </resources>
