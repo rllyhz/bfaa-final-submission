@@ -72,6 +72,8 @@
     <string name="settings_reminder_setup_success_message">Reminder successfully set up</string>
     <string name="settings_reminder_cancaled_success_message">Reminder successfully canceled</string>
 
+    <string name="user_fav_no_user_favs_message">You still have no user favs. Go ahead and find them</string>
+
     <!-- for feedback message -->
     <string name="error_message_label">Error</string>
     <string name="error_message">Sorry, something went wrong :(</string>
@@ -86,4 +88,5 @@
     <string name="toolbar_menu_item_change_language_label">Change Language</string>
     <string name="toolbar_menu_item_settings_label">Settings</string>
     <string name="toolbar_menu_item_user_fav_label">User Favourites</string>
+    <string name="user_fav_empty_illustration_content_desc">Empty Illustration</string>
 </resources>

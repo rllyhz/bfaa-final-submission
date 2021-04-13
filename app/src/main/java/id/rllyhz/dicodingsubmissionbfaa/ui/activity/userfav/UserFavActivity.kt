@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityUserFavBinding
 import id.rllyhz.dicodingsubmissionbfaa.ui.adapter.UserListAdapter
+import kotlinx.android.synthetic.main.activity_user_fav.view.*
 
 @AndroidEntryPoint
 class UserFavActivity : AppCompatActivity() {
@@ -38,15 +41,22 @@ class UserFavActivity : AppCompatActivity() {
     private fun setupUI() {
         userFavAdapter = UserListAdapter()
 
-        binding.recyclerviewUserFav.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@UserFavActivity)
-            adapter = userFavAdapter
-        }
-    }
+        binding.apply {
+            Glide.with(this@UserFavActivity)
+                .load(
+                    ContextCompat.getDrawable(
+                        this@UserFavActivity,
+                        R.drawable.empty_illustration
+                    )
+                )
+                .into(ivUserFavEmptyIllustration)
 
-    private fun showSwipeRefreshLayout(state: Boolean) {
-        binding.swipeRefreshUserFav.isRefreshing = state
+            recyclerviewUserFav.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(this@UserFavActivity)
+                adapter = userFavAdapter
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
