@@ -7,6 +7,7 @@
     <string name="action_bar_title_profile">Profile</string>
     <string name="action_bar_title_user_detail">User Detail</string>
     <string name="action_bar_title_user_fav">User Favourites</string>
+    <string name="action_bar_title_alarm_setting">Alarm Setting</string>
 
     <!-- for headline in home ui -->
     <string name="headline_1_text">Find your developers to make the world more intelligent!</string>
