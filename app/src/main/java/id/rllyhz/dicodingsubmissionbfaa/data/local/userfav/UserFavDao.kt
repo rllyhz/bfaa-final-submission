@@ -1,5 +1,6 @@
 package id.rllyhz.dicodingsubmissionbfaa.data.local.userfav
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -8,10 +9,10 @@ import androidx.room.Query
 interface UserFavDao {
 
     @Query("SELECT * FROM user_fav_table")
-    fun getAllUserFavs(): List<UserFav>
+    fun getAllUserFavs(): LiveData<List<UserFav>>
 
     @Query("SELECT * FROM user_fav_table WHERE username = :username LIMIT 1")
-    suspend fun doesUserExist(username: String): UserFav
+    suspend fun doesUserExist(username: String): LiveData<UserFav>
 
     @Insert
     suspend fun add(userFav: UserFav)
