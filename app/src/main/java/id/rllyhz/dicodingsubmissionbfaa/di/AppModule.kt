@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.rllyhz.dicodingsubmissionbfaa.api.GithubApi
 import id.rllyhz.dicodingsubmissionbfaa.data.local.GithubDatabase
+import id.rllyhz.dicodingsubmissionbfaa.data.local.userfav.UserFavDao
 import id.rllyhz.dicodingsubmissionbfaa.ui.activity.main.MainRepository
 import id.rllyhz.dicodingsubmissionbfaa.util.DispacherProvider
 import kotlinx.coroutines.CoroutineDispatcher
@@ -36,7 +37,13 @@ object AppModule {
         application: Application
     ): GithubDatabase =
         Room.databaseBuilder(application, GithubDatabase::class.java, "user_fav_database")
+            .fallbackToDestructiveMigration()
             .build()
+
+    @Provides
+    fun provideUserFavDao(
+        db: GithubDatabase
+    ): UserFavDao = db.userFavDao()
 
 
     @Provides
