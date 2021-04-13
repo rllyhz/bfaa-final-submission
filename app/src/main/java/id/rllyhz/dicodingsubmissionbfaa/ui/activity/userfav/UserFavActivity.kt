@@ -2,14 +2,20 @@ package id.rllyhz.dicodingsubmissionbfaa.ui.activity.userfav
 
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityUserFavBinding
+import id.rllyhz.dicodingsubmissionbfaa.ui.adapter.UserListAdapter
 
 @AndroidEntryPoint
 class UserFavActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserFavBinding
+    private lateinit var userFavAdapter: UserListAdapter
+
+    private val viewModel: UserFavModelView by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +36,13 @@ class UserFavActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        //TODO("Not yet implemented")
+        userFavAdapter = UserListAdapter()
+
+        binding.recyclerviewUserFav.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@UserFavActivity)
+            adapter = userFavAdapter
+        }
     }
 
     private fun showSwipeRefreshLayout(state: Boolean) {
