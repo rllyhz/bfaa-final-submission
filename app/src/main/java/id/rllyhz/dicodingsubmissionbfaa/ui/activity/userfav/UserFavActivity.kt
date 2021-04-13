@@ -3,9 +3,11 @@ package id.rllyhz.dicodingsubmissionbfaa.ui.activity.userfav
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityUserFavBinding
 
+@AndroidEntryPoint
 class UserFavActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserFavBinding
 
