@@ -14,7 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityMainBinding
-import id.rllyhz.dicodingsubmissionbfaa.ui.activity.alarm.AlarmActivity
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.setting.SettingsActivity
 import id.rllyhz.dicodingsubmissionbfaa.ui.activity.userfav.UserFavActivity
 
 @AndroidEntryPoint
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_menu_alarm -> {
                 startActivity(
-                    Intent(this@MainActivity, AlarmActivity::class.java)
+                    Intent(this@MainActivity, SettingsActivity::class.java)
                 )
                 true
             }
