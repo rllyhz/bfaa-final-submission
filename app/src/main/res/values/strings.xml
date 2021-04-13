@@ -49,6 +49,7 @@
     <string name="user_detail_content_desc_repository_icon">Repository Icon</string>
     <string name="user_detail_added_to_fav_message">Added to Fav</string>
     <string name="user_detail_removed_from_fav_message">Removed from Fav</string>
+    <string name="user_detail_snackbar_action_label">See</string>
 
     <string name="profile_following_label">Following</string>
     <string name="profile_following_count">3.3k</string>

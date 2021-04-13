@@ -14,11 +14,13 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.data.model.User
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityUserDetailBinding
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.userfav.UserFavActivity
 import id.rllyhz.dicodingsubmissionbfaa.ui.adapter.FollowingFollowersPagerAdapter
 import id.rllyhz.dicodingsubmissionbfaa.util.DataConverter
 import id.rllyhz.dicodingsubmissionbfaa.util.ResourceEvent
@@ -46,7 +48,7 @@ class UserDetailActivity : AppCompatActivity() {
             setupUI()
         } else {
             finish()
-            showFeedback(resources.getString(R.string.redirect_message))
+            showFeedback(resources.getString(R.string.redirect_message), false)
         }
     }
 
@@ -117,10 +119,16 @@ class UserDetailActivity : AppCompatActivity() {
 
                     if (isChecked) {
                         userExtra?.let { viewModel.addToFav(it) }
-                        showFeedback(resources.getString(R.string.user_detail_added_to_fav_message))
+                        showFeedback(
+                            resources.getString(R.string.user_detail_added_to_fav_message),
+                            true
+                        )
                     } else {
                         userExtra?.let { viewModel.removeFromFav(it) }
-                        showFeedback(resources.getString(R.string.user_detail_removed_from_fav_message))
+                        showFeedback(
+                            resources.getString(R.string.user_detail_removed_from_fav_message),
+                            true
+                        )
                     }
                 }
 
@@ -189,12 +197,25 @@ class UserDetailActivity : AppCompatActivity() {
         binding.swipeRefreshUserDetail.isRefreshing = state
     }
 
-    private fun showFeedback(message: String) {
-        Toast.makeText(
-            applicationContext,
-            message,
-            Toast.LENGTH_LONG
-        ).show()
+    private fun showFeedback(message: String, useSnackbar: Boolean) {
+        if (useSnackbar) {
+            Snackbar.make(binding.coordinatorLayoutUserDetail, message, Snackbar.LENGTH_LONG)
+                .apply {
+                    animationMode = Snackbar.ANIMATION_MODE_SLIDE
+                    setAction(resources.getString(R.string.user_detail_snackbar_action_label)) {
+                        startActivity(
+                            Intent(this@UserDetailActivity, UserFavActivity::class.java)
+                        )
+                    }
+                    show()
+                }
+        } else {
+            Toast.makeText(
+                applicationContext,
+                message,
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
