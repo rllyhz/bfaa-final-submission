@@ -1,6 +1,8 @@
 package id.rllyhz.dicodingsubmissionbfaa.ui.activity.main
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -42,6 +44,23 @@ class MainActivity : AppCompatActivity() {
 
             setupActionBarWithNavController(navController, appBarConfiguration)
             bottomNavigationView.setupWithNavController(navController)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_bar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_menu_alarm -> {
+                true
+            }
+            R.id.action_menu_user_fav -> {
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

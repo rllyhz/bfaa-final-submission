@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DicodingSubmissionBFAA">
-        <activity android:name=".ui.activity.userfav.UserFavActivity"></activity>
+        <activity android:name=".ui.activity.alarm.AlarmActivity"></activity>
+        <activity android:name=".ui.activity.userfav.UserFavActivity" />
         <activity android:name=".ui.activity.detail.UserDetailActivity" />
         <activity
             android:name=".ui.activity.main.MainActivity"
