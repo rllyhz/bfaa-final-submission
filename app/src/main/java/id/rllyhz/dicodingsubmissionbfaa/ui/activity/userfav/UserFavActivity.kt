@@ -16,6 +16,7 @@ class UserFavActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupActionBar()
+        setupUI()
     }
 
     private fun setupActionBar() {
@@ -24,6 +25,10 @@ class UserFavActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_arrow_left)
         }
+    }
+
+    private fun setupUI() {
+        //TODO("Not yet implemented")
     }
 
     private fun showSwipeRefreshLayout(state: Boolean) {
