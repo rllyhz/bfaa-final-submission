@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "user_fav_table")
 @Parcelize
 data class UserFav(
-    @PrimaryKey(autoGenerate = false) val userId: Int,
+    @PrimaryKey val userId: Int,
     val username: String,
     val avatar_url: String
 ) : Parcelable

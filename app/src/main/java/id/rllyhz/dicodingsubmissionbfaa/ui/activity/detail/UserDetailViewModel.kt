@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import id.rllyhz.dicodingsubmissionbfaa.data.local.userfav.UserFav
 import id.rllyhz.dicodingsubmissionbfaa.data.model.User
-import id.rllyhz.dicodingsubmissionbfaa.ui.activity.main.MainRepository
 import id.rllyhz.dicodingsubmissionbfaa.util.DispacherProvider
 import id.rllyhz.dicodingsubmissionbfaa.util.Resource
 import id.rllyhz.dicodingsubmissionbfaa.util.ResourceEvent
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserDetailViewModel @Inject constructor(
-    private val repository: MainRepository,
+    private val repository: UserDetailRepository,
     private val dispatchers: DispacherProvider
 ) : ViewModel() {
 
@@ -36,13 +36,18 @@ class UserDetailViewModel @Inject constructor(
                 is Resource.Error -> _state.value =
                     ResourceEvent.Failure(userDetailResponse.message!!)
                 is Resource.Success -> {
-                    _state.value = ResourceEvent.Success(null, userDetailResponse.data!!)
+                    _state.value = ResourceEvent.Success(null, null)
 
                     withContext(dispatchers.main) {
-                        _currentUser.value = userDetailResponse.data
+                        _currentUser.value = userDetailResponse.data!!
                     }
                 }
             }
         }
+    }
+
+    fun addToFav(user: User) {
+        val newUserFav = UserFav(user.id.toInt(), user.username, user.avatarUrl)
+        repository.addToFav(newUserFav)
     }
 }

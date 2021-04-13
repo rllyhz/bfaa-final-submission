@@ -1,11 +1,13 @@
 package id.rllyhz.dicodingsubmissionbfaa.util
 
 import android.icu.text.CompactDecimalFormat
+import id.rllyhz.dicodingsubmissionbfaa.data.local.userfav.UserFav
 import id.rllyhz.dicodingsubmissionbfaa.data.model.User
 import id.rllyhz.dicodingsubmissionbfaa.data.response.SearchUsersResponse
 import id.rllyhz.dicodingsubmissionbfaa.data.response.UserDetailResponse
 import id.rllyhz.dicodingsubmissionbfaa.data.response.UsersResponse
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.ln
 import kotlin.math.pow
 
@@ -70,6 +72,22 @@ object DataConverter {
             userResponse.followersCount,
             userResponse.followingCount,
         )
+
+    fun userFavsToUserModels(userFavs: List<UserFav>): List<User> {
+        val users = ArrayList<User>()
+
+        for (user in userFavs) {
+            users.add(
+                User(
+                    user.userId.toLong(),
+                    user.username,
+                    user.avatar_url
+                )
+            )
+        }
+
+        return users
+    }
 
     fun getFollowingAndFollowersFormat(number: Long): String =
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {

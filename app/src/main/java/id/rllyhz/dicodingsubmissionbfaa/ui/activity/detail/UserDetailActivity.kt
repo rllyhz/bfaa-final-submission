@@ -28,6 +28,7 @@ import kotlinx.coroutines.flow.collect
 class UserDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserDetailBinding
     private lateinit var mAdapter: FollowingFollowersPagerAdapter
+    private var userExtra: User? = null
 
     private val viewModel: UserDetailViewModel by viewModels()
 
@@ -36,10 +37,10 @@ class UserDetailActivity : AppCompatActivity() {
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val userExtra = intent.getParcelableExtra<User>(USER_EXTRAS)
+        userExtra = intent.getParcelableExtra<User>(USER_EXTRAS)
 
         if (userExtra != null) {
-            viewModel.getUser(userExtra.username)
+            userExtra?.username?.let { viewModel.getUser(it) }
 
             setupActionBar()
             setupUI()
@@ -105,6 +106,7 @@ class UserDetailActivity : AppCompatActivity() {
                 // toggleBtn user fav
                 toggleBtnUserFav.setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) {
+                        userExtra?.let { viewModel.addToFav(it) }
                         showFeedback(resources.getString(R.string.user_detail_added_to_fav_message))
                     } else {
                         showFeedback(resources.getString(R.string.user_detail_removed_from_fav_message))
@@ -194,6 +196,11 @@ class UserDetailActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+
+        userExtra = null
+    }
 
     companion object {
         const val USER_EXTRAS = "USER_EXTRAS"

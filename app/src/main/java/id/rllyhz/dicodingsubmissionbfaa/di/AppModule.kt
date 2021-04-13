@@ -1,12 +1,16 @@
 package id.rllyhz.dicodingsubmissionbfaa.di
 
 import android.app.Application
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.rllyhz.dicodingsubmissionbfaa.api.GithubApi
+import id.rllyhz.dicodingsubmissionbfaa.data.local.GithubDatabase
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.detail.UserDetailRepository
 import id.rllyhz.dicodingsubmissionbfaa.ui.activity.main.MainRepository
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.userfav.UserFavRepository
 import id.rllyhz.dicodingsubmissionbfaa.util.DispacherProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -30,11 +34,38 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideGithubDB(
+        application: Application
+    ): GithubDatabase =
+        Room.databaseBuilder(application, GithubDatabase::class.java, "github_database")
+            .fallbackToDestructiveMigration()
+            .build()
+
+
+    @Provides
+    @Singleton
     fun provideMainRepository(
         githubApi: GithubApi,
         application: Application
     ): MainRepository =
         MainRepository(githubApi, application)
+
+    @Provides
+    @Singleton
+    fun provideUserDetailRepository(
+        githubApi: GithubApi,
+        application: Application,
+        db: GithubDatabase,
+        dispachers: DispacherProvider
+    ): UserDetailRepository =
+        UserDetailRepository(githubApi, application, db, dispachers)
+
+    @Provides
+    @Singleton
+    fun provideUserFavRepository(
+        db: GithubDatabase
+    ): UserFavRepository =
+        UserFavRepository(db)
 
 
     @Provides

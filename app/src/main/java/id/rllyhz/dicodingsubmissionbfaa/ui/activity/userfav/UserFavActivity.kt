@@ -1,7 +1,9 @@
 package id.rllyhz.dicodingsubmissionbfaa.ui.activity.userfav
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -11,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityUserFavBinding
 import id.rllyhz.dicodingsubmissionbfaa.ui.adapter.UserListAdapter
+import id.rllyhz.dicodingsubmissionbfaa.util.DataConverter
 import kotlinx.android.synthetic.main.activity_user_fav.view.*
 
 @AndroidEntryPoint
@@ -55,6 +58,34 @@ class UserFavActivity : AppCompatActivity() {
                 setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(this@UserFavActivity)
                 adapter = userFavAdapter
+            }
+        }
+
+        viewModel.getAllUserFavs().observe(this) { userFavs ->
+            if (userFavs != null && userFavs.isNotEmpty()) {
+                // data exists
+                Log.d(packageName, userFavs.toString())
+
+                val users = DataConverter.userFavsToUserModels(userFavs)
+                userFavAdapter.submitList(users)
+
+                setUIState(true)
+            } else {
+                // data empty
+                Log.d(packageName, "Kosong")
+                setUIState(false)
+            }
+        }
+    }
+
+    private fun setUIState(state: Boolean) {
+        binding.apply {
+            if (state) {
+                recyclerviewUserFav.visibility = View.VISIBLE
+                rlUserFavEmptyLayout.visibility = View.GONE
+            } else {
+                recyclerviewUserFav.visibility = View.GONE
+                rlUserFavEmptyLayout.visibility = View.VISIBLE
             }
         }
     }
