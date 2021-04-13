@@ -1,5 +1,6 @@
 package id.rllyhz.dicodingsubmissionbfaa.ui.activity.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,6 +14,8 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityMainBinding
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.alarm.AlarmActivity
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.userfav.UserFavActivity
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -55,9 +58,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_menu_alarm -> {
+                startActivity(
+                    Intent(this@MainActivity, AlarmActivity::class.java)
+                )
                 true
             }
             R.id.action_menu_user_fav -> {
+                startActivity(
+                    Intent(this@MainActivity, UserFavActivity::class.java)
+                )
                 true
             }
             else -> super.onOptionsItemSelected(item)
