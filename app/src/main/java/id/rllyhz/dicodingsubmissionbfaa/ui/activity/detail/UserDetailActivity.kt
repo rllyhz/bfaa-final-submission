@@ -37,7 +37,7 @@ class UserDetailActivity : AppCompatActivity() {
         binding = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        userExtra = intent.getParcelableExtra<User>(USER_EXTRAS)
+        userExtra = intent.getParcelableExtra(USER_EXTRAS)
 
         if (userExtra != null) {
             userExtra?.username?.let { viewModel.getUser(it) }
