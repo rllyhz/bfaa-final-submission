@@ -1,5 +1,6 @@
 package id.rllyhz.dicodingsubmissionbfaa.ui.activity.userfav
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -11,13 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
+import id.rllyhz.dicodingsubmissionbfaa.data.model.User
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityUserFavBinding
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.detail.UserDetailActivity
 import id.rllyhz.dicodingsubmissionbfaa.ui.adapter.UserListAdapter
 import id.rllyhz.dicodingsubmissionbfaa.util.DataConverter
 import kotlinx.android.synthetic.main.activity_user_fav.view.*
 
 @AndroidEntryPoint
-class UserFavActivity : AppCompatActivity() {
+class UserFavActivity : AppCompatActivity(), UserListAdapter.ItemClickCallback {
     private lateinit var binding: ActivityUserFavBinding
     private lateinit var userFavAdapter: UserListAdapter
 
@@ -43,6 +46,7 @@ class UserFavActivity : AppCompatActivity() {
 
     private fun setupUI() {
         userFavAdapter = UserListAdapter()
+        userFavAdapter.setOnItemListener(this)
 
         binding.apply {
             Glide.with(this@UserFavActivity)
@@ -98,5 +102,13 @@ class UserFavActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onDetailIconClick(user: User) {
+        startActivity(
+            Intent(this, UserDetailActivity::class.java).apply {
+                putExtra(UserDetailActivity.USER_EXTRAS, user)
+            }
+        )
     }
 }
