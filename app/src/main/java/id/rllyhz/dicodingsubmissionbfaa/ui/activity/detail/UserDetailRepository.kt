@@ -35,9 +35,19 @@ class UserDetailRepository @Inject constructor(
         }
     }
 
+    suspend fun doesUserExistInFav(username: String): Int {
+        return db.userFavDao().doesUserExist(username)
+    }
+
     fun addToFav(user: UserFav) {
         CoroutineScope(dispachers.io).launch {
             db.userFavDao().add(user)
+        }
+    }
+
+    fun removeFromFav(userId: Int) {
+        CoroutineScope(dispachers.io).launch {
+            db.userFavDao().remove(userId)
         }
     }
 }

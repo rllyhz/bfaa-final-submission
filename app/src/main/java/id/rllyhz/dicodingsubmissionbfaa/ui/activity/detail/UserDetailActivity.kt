@@ -104,11 +104,22 @@ class UserDetailActivity : AppCompatActivity() {
 
 
                 // toggleBtn user fav
-                toggleBtnUserFav.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.apply {
+                    isUserFavourite.observe(this@UserDetailActivity) { isFav ->
+                        toggleBtnUserFav.isChecked = isFav
+                    }
+
+                    userExtra?.let { doesUserExistInFav(it.username) }
+                }
+
+                toggleBtnUserFav.setOnClickListener {
+                    val isChecked = toggleBtnUserFav.isChecked
+
                     if (isChecked) {
                         userExtra?.let { viewModel.addToFav(it) }
                         showFeedback(resources.getString(R.string.user_detail_added_to_fav_message))
                     } else {
+                        userExtra?.let { viewModel.removeFromFav(it) }
                         showFeedback(resources.getString(R.string.user_detail_removed_from_fav_message))
                     }
                 }

@@ -46,8 +46,25 @@ class UserDetailViewModel @Inject constructor(
         }
     }
 
+    private val _isUserFavourite = MutableLiveData<Boolean>()
+    val isUserFavourite: LiveData<Boolean> = _isUserFavourite
+
+    fun doesUserExistInFav(username: String) {
+        viewModelScope.launch(dispatchers.io) {
+            val result = repository.doesUserExistInFav(username)
+
+            withContext(dispatchers.main) {
+                _isUserFavourite.value = result > 0
+            }
+        }
+    }
+
     fun addToFav(user: User) {
         val newUserFav = UserFav(user.id.toInt(), user.username, user.avatarUrl)
         repository.addToFav(newUserFav)
+    }
+
+    fun removeFromFav(user: User) {
+        repository.removeFromFav(user.id.toInt())
     }
 }

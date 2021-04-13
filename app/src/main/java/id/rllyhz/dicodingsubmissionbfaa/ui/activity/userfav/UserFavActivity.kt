@@ -2,7 +2,6 @@ package id.rllyhz.dicodingsubmissionbfaa.ui.activity.userfav
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
@@ -67,16 +66,10 @@ class UserFavActivity : AppCompatActivity(), UserListAdapter.ItemClickCallback {
 
         viewModel.getAllUserFavs().observe(this) { userFavs ->
             if (userFavs != null && userFavs.isNotEmpty()) {
-                // data exists
-                Log.d(packageName, userFavs.toString())
-
                 val users = DataConverter.userFavsToUserModels(userFavs)
                 userFavAdapter.submitList(users)
-
                 setUIState(true)
             } else {
-                // data empty
-                Log.d(packageName, "Kosong")
                 setUIState(false)
             }
         }
