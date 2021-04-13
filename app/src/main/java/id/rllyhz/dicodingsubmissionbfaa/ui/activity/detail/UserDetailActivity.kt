@@ -45,7 +45,7 @@ class UserDetailActivity : AppCompatActivity() {
             setupUI()
         } else {
             finish()
-            showFeedback()
+            showFeedback(resources.getString(R.string.redirect_message))
         }
     }
 
@@ -102,6 +102,16 @@ class UserDetailActivity : AppCompatActivity() {
                 }.attach()
 
 
+                // toggleBtn user fav
+                toggleBtnUserFav.setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) {
+                        showFeedback(resources.getString(R.string.user_detail_added_to_fav_message))
+                    } else {
+                        showFeedback(resources.getString(R.string.user_detail_removed_from_fav_message))
+                    }
+                }
+
+
                 // swiperefresh
                 swipeRefreshUserDetail.setOnRefreshListener {
                     viewModel.getUser(user.username)
@@ -131,6 +141,7 @@ class UserDetailActivity : AppCompatActivity() {
         binding.apply {
             viewPagerUserDetail.visibility = View.VISIBLE
             tabLayoutUserDetail.visibility = View.VISIBLE
+            toggleBtnUserFav.visibility = View.VISIBLE
         }
     }
 
@@ -149,6 +160,7 @@ class UserDetailActivity : AppCompatActivity() {
 
             viewPagerUserDetail.visibility = View.GONE
             tabLayoutUserDetail.visibility = View.GONE
+            toggleBtnUserFav.visibility = View.GONE
         }
     }
 
@@ -164,10 +176,10 @@ class UserDetailActivity : AppCompatActivity() {
         binding.swipeRefreshUserDetail.isRefreshing = state
     }
 
-    private fun showFeedback() {
+    private fun showFeedback(message: String) {
         Toast.makeText(
             applicationContext,
-            resources.getString(R.string.redirect_message),
+            message,
             Toast.LENGTH_LONG
         ).show()
     }
