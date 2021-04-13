@@ -27,6 +27,8 @@ class AlarmActivity : AppCompatActivity(), DatePickerFragment.DialogDateListener
     }
 
     private fun setupUI() {
+        alarmReceiver = AlarmReceiver()
+
         binding.apply {
             icAlarmDate.setOnClickListener {
                 DatePickerFragment().apply {
@@ -41,7 +43,7 @@ class AlarmActivity : AppCompatActivity(), DatePickerFragment.DialogDateListener
             }
 
             btnAlarmSetUp.setOnClickListener {
-                //
+                setupAlarm()
             }
         }
     }
@@ -51,6 +53,22 @@ class AlarmActivity : AppCompatActivity(), DatePickerFragment.DialogDateListener
             title = getString(R.string.action_bar_title_alarm_setting)
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_arrow_left)
+        }
+    }
+
+    private fun setupAlarm() {
+        binding.apply {
+            val date = tvAlarmDate.text.toString()
+            val time = tvAlarmTime.text.toString()
+            val message = edtAlarmMessage.text.toString()
+
+            alarmReceiver.setRepeatingAlarm(
+                this@AlarmActivity,
+                AlarmReceiver.TYPE_REPEATING,
+                date,
+                time,
+                message
+            )
         }
     }
 
@@ -85,6 +103,7 @@ class AlarmActivity : AppCompatActivity(), DatePickerFragment.DialogDateListener
             TIME_PICKER_TAG -> binding.tvAlarmTime.text = dateFormat.format(calendar.time)
         }
     }
+
 
     companion object {
         private const val DATE_PICKER_TAG = "DatePicker"

@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@id/ic_alarm_time" />
 
     <TextView
-        android:id="@+id/tv_alarm_alarm_type"
+        android:id="@+id/tv_alarm_alarm_type_label"
         style="@style/MyTextMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

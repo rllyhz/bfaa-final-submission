@@ -18,16 +18,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context?, intent: Intent?) {
-        context?.let {
-            intent?.let {
-                sendAlarmNotification(context, intent)
-            }
-        }
+    override fun onReceive(context: Context, intent: Intent) {
+        sendAlarmNotification(context, intent)
     }
 
     private fun sendAlarmNotification(context: Context, intent: Intent) {
-        val message = intent?.getStringExtra(EXTRA_MESSAGE)
+        val message = intent.getStringExtra(EXTRA_MESSAGE)
 
         val notificationManagerCompat =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -135,7 +131,7 @@ class AlarmReceiver : BroadcastReceiver() {
         const val EXTRA_TYPE = "EXTRA_TYPE"
 
         private const val CHANNEL_ID = "id.rllyhz.dicodingsubmissionbfaa.ui.receiver.alarmReceiver"
-        private const val CHANNEL_NAME = "id.rllyhz.dicodingsubmissionbfaa.ui.receiver.Reminder"
+        private const val CHANNEL_NAME = "Reminder Github"
         private const val REPEAT_CODE = 101
         private const val ONETIME_CODE = 102
     }
