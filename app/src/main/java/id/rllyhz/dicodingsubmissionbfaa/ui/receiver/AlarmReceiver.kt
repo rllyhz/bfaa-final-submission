@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import id.rllyhz.dicodingsubmissionbfaa.R
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.main.MainActivity
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -24,6 +25,15 @@ class AlarmReceiver : BroadcastReceiver() {
 
     private fun sendAlarmNotification(context: Context, intent: Intent) {
         val message = intent.getStringExtra(EXTRA_MESSAGE)
+        val mainActivityIntent = Intent(context, MainActivity::class.java)
+
+        val pendingIntent =
+            PendingIntent.getActivity(
+                context,
+                1010,
+                mainActivityIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
 
         val notificationManagerCompat =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -35,6 +45,7 @@ class AlarmReceiver : BroadcastReceiver() {
             .setColor(ContextCompat.getColor(context, R.color.redish_500))
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
             .setSound(alarmSound)
+            .setContentIntent(pendingIntent)
             .setAutoCancel(true)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -42,10 +53,10 @@ class AlarmReceiver : BroadcastReceiver() {
                 CHANNEL_ID,
                 CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_DEFAULT
-            )
-
-            channel.enableVibration(true)
-            channel.vibrationPattern = longArrayOf(1000, 1000, 1000, 1000, 1000)
+            ).apply {
+                enableVibration(true)
+                vibrationPattern = longArrayOf(1000, 1000, 1000, 1000, 1000)
+            }
 
             builder.setChannelId(CHANNEL_ID)
             notificationManagerCompat.createNotificationChannel(channel)
@@ -56,7 +67,6 @@ class AlarmReceiver : BroadcastReceiver() {
 
     fun setRepeatingAlarm(
         context: Context,
-        type: String,
         date: String,
         time: String,
         message: String
@@ -66,7 +76,6 @@ class AlarmReceiver : BroadcastReceiver() {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra(EXTRA_MESSAGE, message)
-            putExtra(EXTRA_TYPE, type)
         }
 
         val dateArray = date.split("-").toTypedArray()
@@ -120,19 +129,14 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     companion object {
-        const val TYPE_ONE_TIME = "OneTimeAlarm"
-        const val TYPE_REPEATING = "RepeatingAlarm"
-
         private const val TIME_FORMAT = "HH:mm"
         private const val DATE_FORMAT = "yyyy-MM-dd"
         private const val NOTIFICATION_ID = 1212
 
         const val EXTRA_MESSAGE = "EXTRA_MESSAGE"
-        const val EXTRA_TYPE = "EXTRA_TYPE"
 
         private const val CHANNEL_ID = "id.rllyhz.dicodingsubmissionbfaa.ui.receiver.alarmReceiver"
         private const val CHANNEL_NAME = "Reminder Github"
         private const val REPEAT_CODE = 101
-        private const val ONETIME_CODE = 102
     }
 }

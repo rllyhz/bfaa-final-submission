@@ -2,6 +2,7 @@ package id.rllyhz.dicodingsubmissionbfaa.ui.activity.alarm
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityAlarmBinding
@@ -62,13 +63,20 @@ class AlarmActivity : AppCompatActivity(), DatePickerFragment.DialogDateListener
             val time = tvAlarmTime.text.toString()
             val message = edtAlarmMessage.text.toString()
 
+            if (date.isEmpty() || time.isEmpty() || message.isEmpty()) {
+                Toast.makeText(applicationContext, "All fields must be filled!", Toast.LENGTH_LONG)
+                    .show()
+                return
+            }
+
             alarmReceiver.setRepeatingAlarm(
                 this@AlarmActivity,
-                AlarmReceiver.TYPE_REPEATING,
                 date,
                 time,
                 message
             )
+
+            finish()
         }
     }
 
@@ -98,16 +106,12 @@ class AlarmActivity : AppCompatActivity(), DatePickerFragment.DialogDateListener
         }
 
         val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-
-        when (tag) {
-            TIME_PICKER_TAG -> binding.tvAlarmTime.text = dateFormat.format(calendar.time)
-        }
+        binding.tvAlarmTime.text = dateFormat.format(calendar.time)
     }
 
 
     companion object {
         private const val DATE_PICKER_TAG = "DatePicker"
         private const val TIME_PICKER_TAG = "TimePickerOnce"
-        private const val TIME_PICKER_REPEAT_TAG = "TimePickerRepeat"
     }
 }

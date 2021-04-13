@@ -4,82 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
     tools:context=".ui.activity.alarm.AlarmActivity">
 
-    <ImageButton
-        android:id="@+id/ic_alarm_date"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_date" />
-
-    <TextView
-        android:id="@+id/tv_alarm_date"
-        style="@style/MyTextRegular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Date"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/ic_alarm_date"
-        app:layout_constraintLeft_toRightOf="@id/ic_alarm_date"
-        app:layout_constraintTop_toTopOf="@id/ic_alarm_date" />
-
-    <ImageButton
-        android:id="@+id/ic_alarm_time"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/ic_alarm_date"
-        app:layout_constraintTop_toBottomOf="@id/ic_alarm_date"
-        app:srcCompat="@drawable/ic_time" />
-
-    <TextView
-        android:id="@+id/tv_alarm_time"
-        style="@style/MyTextRegular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Time"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/ic_alarm_time"
-        app:layout_constraintLeft_toRightOf="@id/ic_alarm_time"
-        app:layout_constraintTop_toTopOf="@id/ic_alarm_time" />
-
-    <EditText
-        android:id="@+id/edt_alarm_message"
-        style="@style/MyTextRegular"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="Message"
-        android:inputType="textLongMessage"
-        android:lines="2"
-        android:padding="8dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/grey_light"
-        app:layout_constraintTop_toBottomOf="@id/ic_alarm_time" />
-
-    <TextView
-        android:id="@+id/tv_alarm_alarm_type_label"
-        style="@style/MyTextMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Alarm Type"
-        android:textColor="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edt_alarm_message" />
-
-    <Button
-        android:id="@+id/btn_alarm_set_up"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Set up"
-        android:textAllCaps="false"
+        android:layout_margin="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+
+            <ImageButton
+                android:id="@+id/ic_alarm_date"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_date" />
+
+            <TextView
+                android:id="@+id/tv_alarm_date"
+                style="@style/MyTextRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Date"
+                app:layout_constraintBottom_toBottomOf="@id/ic_alarm_date"
+                app:layout_constraintLeft_toRightOf="@id/ic_alarm_date"
+                app:layout_constraintTop_toTopOf="@id/ic_alarm_date" />
+
+            <ImageButton
+                android:id="@+id/ic_alarm_time"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/ic_alarm_date"
+                app:layout_constraintTop_toBottomOf="@id/ic_alarm_date"
+                app:srcCompat="@drawable/ic_time" />
+
+            <TextView
+                android:id="@+id/tv_alarm_time"
+                style="@style/MyTextRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Time"
+                app:layout_constraintBottom_toBottomOf="@id/ic_alarm_time"
+                app:layout_constraintLeft_toRightOf="@id/ic_alarm_time"
+                app:layout_constraintTop_toTopOf="@id/ic_alarm_time" />
+
+            <EditText
+                android:id="@+id/edt_alarm_message"
+                style="@style/MyTextRegular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Message"
+                android:inputType="textLongMessage"
+                android:lines="2"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/ic_alarm_time" />
+
+            <Button
+                android:id="@+id/btn_alarm_set_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Set up"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_alarm_message" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
