@@ -1,11 +1,13 @@
 package id.rllyhz.dicodingsubmissionbfaa.di
 
 import android.app.Application
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.rllyhz.dicodingsubmissionbfaa.api.GithubApi
+import id.rllyhz.dicodingsubmissionbfaa.data.local.GithubDatabase
 import id.rllyhz.dicodingsubmissionbfaa.ui.activity.main.MainRepository
 import id.rllyhz.dicodingsubmissionbfaa.util.DispacherProvider
 import kotlinx.coroutines.CoroutineDispatcher
@@ -26,6 +28,15 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(GithubApi::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideGithubDB(
+        application: Application
+    ): GithubDatabase =
+        Room.databaseBuilder(application, GithubDatabase::class.java, "user_fav_database")
+            .build()
 
 
     @Provides
