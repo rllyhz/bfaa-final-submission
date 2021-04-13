@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.activity.settings.SettingsActivity">
+
+    <TextView
+        android:id="@+id/tv_settings_change_language"
+        style="@style/MyTextRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_change_language_label"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_settings_language_display"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:text="@string/settings_change_language_default"
+        android:textColor="@color/grey_lighter"
+        app:drawableEndCompat="@drawable/ic_language"
+        app:layout_constraintBottom_toBottomOf="@id/tv_settings_change_language"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_settings_change_language" />
+
+    <TextView
+        android:id="@+id/tv_settings_set_reminder"
+        style="@style/MyTextRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/settings_set_reminder_label"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="@id/tv_settings_change_language"
+        app:layout_constraintTop_toBottomOf="@id/tv_settings_change_language" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_settings_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/tv_settings_set_reminder"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_settings_set_reminder" />
+
+    <TextView
+        android:id="@+id/tv_settings_time_reminder_label"
+        style="@style/MyTextRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/settings_time_reminder_label"
+        android:textColor="@color/grey_lighter"
+        app:layout_constraintLeft_toLeftOf="@id/tv_settings_set_reminder"
+        app:layout_constraintTop_toBottomOf="@id/tv_settings_set_reminder" />
+
+    <TextView
+        android:id="@+id/tv_settings_time_reminder"
+        style="@style/MyTextRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:clickable="true"
+        android:drawablePadding="8dp"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/settings_time_reminder"
+        android:textColor="@color/grey_lighter"
+        app:drawableEndCompat="@drawable/ic_time"
+        app:layout_constraintBottom_toBottomOf="@id/tv_settings_time_reminder_label"
+        app:layout_constraintLeft_toRightOf="@id/tv_settings_time_reminder_label"
+        app:layout_constraintTop_toTopOf="@id/tv_settings_time_reminder_label" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

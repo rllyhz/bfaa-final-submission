@@ -14,7 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityMainBinding
-import id.rllyhz.dicodingsubmissionbfaa.ui.activity.setting.SettingsActivity
+import id.rllyhz.dicodingsubmissionbfaa.ui.activity.settings.SettingsActivity
 import id.rllyhz.dicodingsubmissionbfaa.ui.activity.userfav.UserFavActivity
 
 @AndroidEntryPoint
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_menu_alarm -> {
+            R.id.action_menu_settings -> {
                 startActivity(
                     Intent(this@MainActivity, SettingsActivity::class.java)
                 )

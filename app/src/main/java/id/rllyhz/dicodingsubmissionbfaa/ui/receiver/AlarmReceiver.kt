@@ -13,12 +13,14 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import id.rllyhz.dicodingsubmissionbfaa.R
+import id.rllyhz.dicodingsubmissionbfaa.data.pref.ReminderPref
 import id.rllyhz.dicodingsubmissionbfaa.ui.activity.main.MainActivity
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AlarmReceiver : BroadcastReceiver() {
+
     override fun onReceive(context: Context, intent: Intent) {
         sendAlarmNotification(context, intent)
     }
@@ -67,24 +69,19 @@ class AlarmReceiver : BroadcastReceiver() {
 
     fun setRepeatingAlarm(
         context: Context,
-        date: String,
         time: String,
         message: String
     ) {
-        if (isDateInvalid(date, DATE_FORMAT) || isDateInvalid(time, TIME_FORMAT)) return
+        if (isDateInvalid(time)) return
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra(EXTRA_MESSAGE, message)
         }
 
-        val dateArray = date.split("-").toTypedArray()
         val timeArray = time.split(":").toTypedArray()
 
         val calendar = Calendar.getInstance().apply {
-            set(Calendar.YEAR, Integer.parseInt(dateArray[0]))
-            set(Calendar.MONTH, Integer.parseInt(dateArray[1]) - 1)
-            set(Calendar.DAY_OF_MONTH, Integer.parseInt(dateArray[2]))
             set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeArray[0]))
             set(Calendar.MINUTE, Integer.parseInt(timeArray[1]))
             set(Calendar.SECOND, 0)
@@ -99,7 +96,11 @@ class AlarmReceiver : BroadcastReceiver() {
             pendingIntent
         )
 
-        showFeedback(context, "Alarm set up!")
+        ReminderPref(context).apply {
+            this.updateAlarmSetup(true, time)
+        }
+
+        showFeedback(context, context.getString(R.string.settings_reminder_setup_success_message))
     }
 
     fun setOffRepeatingAlarm(context: Context) {
@@ -110,16 +111,23 @@ class AlarmReceiver : BroadcastReceiver() {
         pendingIntent.cancel()
         alarmManager.cancel(pendingIntent)
 
-        showFeedback(context, "Success")
+        ReminderPref(context).apply {
+            this.updateAlarmSetup(false, null)
+        }
+
+        showFeedback(
+            context,
+            context.getString(R.string.settings_reminder_cancaled_success_message)
+        )
     }
 
-    fun showFeedback(context: Context, message: String) {
+    private fun showFeedback(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
-    private fun isDateInvalid(date: String, format: String): Boolean {
+    private fun isDateInvalid(date: String): Boolean {
         return try {
-            val df = SimpleDateFormat(format, Locale.getDefault())
+            val df = SimpleDateFormat(TIME_FORMAT, Locale.getDefault())
             df.isLenient = false
             df.parse(date)
             false
@@ -130,7 +138,6 @@ class AlarmReceiver : BroadcastReceiver() {
 
     companion object {
         private const val TIME_FORMAT = "HH:mm"
-        private const val DATE_FORMAT = "yyyy-MM-dd"
         private const val NOTIFICATION_ID = 1212
 
         const val EXTRA_MESSAGE = "EXTRA_MESSAGE"
