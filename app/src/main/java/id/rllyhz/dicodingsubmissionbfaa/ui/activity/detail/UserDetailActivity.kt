@@ -231,7 +231,9 @@ class UserDetailActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
 
-        userExtra = null
+        if (userExtra != null) {
+            userExtra = null
+        }
     }
 
     companion object {
