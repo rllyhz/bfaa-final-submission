@@ -92,4 +92,5 @@
     <string name="toolbar_menu_item_change_language_label">Change Language</string>
     <string name="toolbar_menu_item_settings_label">Settings</string>
     <string name="toolbar_menu_item_user_fav_label">User Favourites</string>
+    <string name="splash_screen_logo_image_content_desc">Splash Screen Logo Image</string>
 </resources>

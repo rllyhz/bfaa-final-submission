@@ -18,6 +18,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DicodingSubmissionBFAA">
+        <activity android:name=".ui.activity.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name=".data.provider.DBGithubContentProvider"
@@ -31,13 +38,7 @@
         <activity android:name=".ui.activity.detail.UserDetailActivity" />
         <activity
             android:name=".ui.activity.main.MainActivity"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <receiver
             android:name=".ui.receiver.AlarmReceiver"
