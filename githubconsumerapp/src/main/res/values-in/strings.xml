@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">Github Consumer App</string>
 
-    <string name="item_user_username">User Icon</string>
+    <string name="item_user_username">Ikon Pengguna</string>
 
-    <string name="user_fav_no_user_favs_message">You still have no user favs. Go ahead and find them</string>
+    <string name="user_fav_no_user_favs_message">Kamu masih belum punya pengembang yang disukai. Temukan pengembangmu sekarang juga!</string>
     <string name="user_fav_empty_illustration_content_desc">User Fav Empty Illustration Icon</string>
 </resources>

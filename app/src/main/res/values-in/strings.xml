@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Dicoding Submission BFAA</string>
+
+    <!-- for actionbar -->
+    <string name="action_bar_title_home">Beranda</string>
+    <string name="action_bar_title_explore">Jelajah</string>
+    <string name="action_bar_title_profile">Profil</string>
+    <string name="action_bar_title_user_detail">Detail Pengguna</string>
+    <string name="action_bar_title_user_fav">Pengguna Favorit</string>
+    <string name="action_bar_title_settings">Pengaturan</string>
+
+    <!-- for headline in home ui -->
+    <string name="headline_1_text">Temukan pengembangmu untuk membuat dunia lebih cerdas!F</string>
+    <string name="headline_2_text">23.4 juta lebih pengembangan tersedia di seluruh dunia</string>
+    <string name="home_user_list_label">Orang yang mungkin kamu kenal</string>
+
+    <!-- for bottom nav -->
+    <string name="bottom_nav_menu_home">Beranda</string>
+    <string name="bottom_nav_menu_explore">Jelajah</string>
+    <string name="bottom_nav_menu_profile">Profil</string>
+
+    <!-- for item user ui -->
+    <string name="item_user_username">jakeWraton</string>
+    <string name="item_user_detail_icon_content_description">Tombol Detail</string>
+    <string name="item_user_content_description_format">%d foto</string>
+
+    <!-- for user detail ui -->
+    <string name="user_detail_fullname">Rully Ihza Mahendra</string>
+    <string name="user_detail_username">rllyhz</string>
+    <string name="user_detail_company_name">Soal-Web</string>
+    <string name="user_detail_location">Semarang, Central Java, Indonesia.</string>
+    <string name="user_detaill_bio_label">Bio</string>
+    <string name="user_detail_bio">Take a deep breath for better ideas ☺</string>
+    <string name="user_detail_blog">rllyhz.github.io</string>
+    <string name="user_detail_following_followers">18 followers - 22 followings</string>
+    <string name="user_detail_repository">43 repositories</string>
+    <plurals name="user_detail_repository_format" tools:ignore="UnusedQuantity">
+        <item quantity="one">%d repository</item>
+        <item quantity="other">%d repositories</item>
+    </plurals>
+    <string name="user_detail_following_followers_format">%s pengikut - %s mengikuti</string>
+    <string name="user_detail_following_label">Mengikuti</string>
+    <string name="user_detail_followers_label">Pengikut</string>
+
+    <string name="user_detail_content_desc_location_icon">Icon Lokasi</string>
+    <string name="user_detail_content_desc_company_icon">Icon Perusahaan</string>
+    <string name="user_detail_content_desc_blog_url_icon">Icon Blog Url</string>
+    <string name="user_detail_content_desc_follows_icon">Icon Mengikuti</string>
+    <string name="user_detail_content_desc_repository_icon">Icon Repository</string>
+    <string name="user_detail_added_to_fav_message">Ditambahkan ke Fav</string>
+    <string name="user_detail_removed_from_fav_message">Dihapush dari Fav</string>
+    <string name="user_detail_snackbar_action_label">Lihat</string>
+
+    <string name="profile_following_label">Mengikuti</string>
+    <string name="profile_following_count">3.3k</string>
+    <string name="profile_followers_label">Pengikut</string>
+    <string name="profile_followers_count">4.54M</string>
+    <string name="profile_repository_label">Repository</string>
+    <string name="profile_repository_count">234</string>
+    <string name="profile_edit_button_text">Ubah Profil</string>
+
+    <string name="explore_search_hint">Carilah pengembangmu…</string>
+    <string name="explore_user_list_label">Hasil</string>
+    <string name="explore_content_desc_search_icon">Icon Pencarian</string>
+    <string name="explore_content_desc_illustration_icon">Ilustrasi Jelajahi dunia</string>
+    <string name="explore_headline">Jelajahi Dunia dan Temukan Pengembangmu</string>
+
+    <string name="settings_change_language_label">Ubah bahasa</string>
+    <string name="settings_change_language_default">Inggris</string>
+    <string name="settings_set_reminder_label">Atur pengingat harian</string>
+    <string name="settings_time_reminder_label">Waktu</string>
+    <string name="settings_time_reminder">09:00</string>
+    <string name="settings_user_dummy">Rully</string>
+    <string name="settings_reminder_message">Halo, %s. Sudahkah kamu temukan pengembangmu hari ini?</string>
+    <string name="settings_reminder_setup_success_message">Pengingat berhasil diatur</string>
+    <string name="settings_reminder_cancaled_success_message">Pengingat berhasil dibatalkan</string>
+
+    <string name="user_fav_no_user_favs_message">Kamu masih belum punya pengembang yang disukai. Temukan pengembangmu sekarang juga!</string>
+    <string name="user_fav_empty_illustration_content_desc">Ilustrasi kosong</string>
+
+    <!-- for feedback message -->
+    <string name="error_message_label">Kesalahan</string>
+    <string name="error_message">Maaf, sepertinya ada kesalahan :(</string>
+    <string name="redirect_message">Maaf, aktifitas tidak dikenali</string>
+    <string name="error_message_description">Ini mungkin terjadi karena tidak ada koneksi internent atau sesuatu internal telah terjadi.</string>
+    <string name="success_message">Berhasil diambil!</string>
+    <string name="result_not_found_message">Hasil tidak ditemukan!</string>
+    <string name="functionality_not_implemented_message">Fungsionalitas ini belum diimplementasikan</string>
+
+    <string name="content_description_logo">Logo Aplikasi</string>
+
+    <string name="toolbar_menu_item_change_language_label">Ubah Bahasa</string>
+    <string name="toolbar_menu_item_settings_label">Pengaturan</string>
+    <string name="toolbar_menu_item_user_fav_label">Pengguna Favorit</string>
+    <string name="splash_screen_logo_image_content_desc">Gambar Logo Splash Screen</string>
+</resources>
