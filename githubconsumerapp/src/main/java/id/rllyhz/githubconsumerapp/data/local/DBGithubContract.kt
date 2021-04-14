@@ -10,12 +10,12 @@ object DBGithubContract {
     internal class UserFavColumns : BaseColumns {
 
         companion object {
-            const val TABLE_NAME = "user_fav_table"
+            private const val TABLE_NAME = "user_fav_table"
             const val ID_COLUMN = "userId"
             const val USERNAME_COLUMN = "username"
             const val AVATAR_URL_COLUMN = "avatar_url"
 
-            val CONTENT_URI = Uri.Builder().scheme(SCHEME)
+            val CONTENT_URI: Uri = Uri.Builder().scheme(SCHEME)
                 .authority(AUTHORITY_TARGET)
                 .appendPath(TABLE_NAME)
                 .build()
