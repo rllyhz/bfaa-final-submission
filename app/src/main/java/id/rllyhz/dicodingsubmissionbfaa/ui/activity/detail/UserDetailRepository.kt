@@ -6,9 +6,9 @@ import id.rllyhz.dicodingsubmissionbfaa.api.GithubApi
 import id.rllyhz.dicodingsubmissionbfaa.data.local.GithubDatabase
 import id.rllyhz.dicodingsubmissionbfaa.data.local.userfav.UserFav
 import id.rllyhz.dicodingsubmissionbfaa.data.model.User
-import id.rllyhz.dicodingsubmissionbfaa.util.DataConverter
 import id.rllyhz.dicodingsubmissionbfaa.util.DispacherProvider
 import id.rllyhz.dicodingsubmissionbfaa.util.Resource
+import id.rllyhz.dicodingsubmissionbfaa.util.toUserModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,7 +17,7 @@ class UserDetailRepository @Inject constructor(
     private val githubApi: GithubApi,
     private val application: Application,
     private val db: GithubDatabase,
-    private val dispachers: DispacherProvider
+    private val dispatchers: DispacherProvider
 ) {
     suspend fun getUserDetailOf(username: String): Resource<User> {
         return try {
@@ -25,8 +25,7 @@ class UserDetailRepository @Inject constructor(
             val usersResponse = response.body()
 
             if (response.isSuccessful && usersResponse != null) {
-                val allUsers = DataConverter.userDetailResponseToUserModel(usersResponse)
-                Resource.Success(allUsers)
+                Resource.Success(usersResponse.toUserModel())
             } else {
                 Resource.Error(response.message())
             }
@@ -40,13 +39,13 @@ class UserDetailRepository @Inject constructor(
     }
 
     fun addToFav(user: UserFav) {
-        CoroutineScope(dispachers.io).launch {
+        CoroutineScope(dispatchers.io).launch {
             db.userFavDao().add(user)
         }
     }
 
     fun removeFromFav(userId: Int) {
-        CoroutineScope(dispachers.io).launch {
+        CoroutineScope(dispatchers.io).launch {
             db.userFavDao().remove(userId)
         }
     }

@@ -4,8 +4,9 @@ import android.app.Application
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.api.GithubApi
 import id.rllyhz.dicodingsubmissionbfaa.data.model.User
-import id.rllyhz.dicodingsubmissionbfaa.util.DataConverter
 import id.rllyhz.dicodingsubmissionbfaa.util.Resource
+import id.rllyhz.dicodingsubmissionbfaa.util.toUserModel
+import id.rllyhz.dicodingsubmissionbfaa.util.toUserModels
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
@@ -18,8 +19,7 @@ class MainRepository @Inject constructor(
             val usersResponse = response.body()
 
             if (response.isSuccessful && usersResponse != null) {
-                val allUsers = DataConverter.usersResponseToUsersModel(usersResponse)
-                Resource.Success(allUsers)
+                Resource.Success(usersResponse.toUserModels())
             } else {
                 Resource.Error(response.message())
             }
@@ -34,8 +34,7 @@ class MainRepository @Inject constructor(
             val usersResponse = response.body()
 
             if (response.isSuccessful && usersResponse != null) {
-                val allUsers = DataConverter.userDetailResponseToUserModel(usersResponse)
-                Resource.Success(allUsers)
+                Resource.Success(usersResponse.toUserModel())
             } else {
                 Resource.Error(response.message())
             }
@@ -50,8 +49,7 @@ class MainRepository @Inject constructor(
             val result = response.body()
 
             if (response.isSuccessful && result != null) {
-                val users = DataConverter.usersResponseToUsersModel(result)
-                Resource.Success(users)
+                Resource.Success(result.toUserModels())
             } else {
                 Resource.Error(response.message())
             }
@@ -66,8 +64,7 @@ class MainRepository @Inject constructor(
             val result = response.body()
 
             if (response.isSuccessful && result != null) {
-                val users = DataConverter.usersResponseToUsersModel(result)
-                Resource.Success(users)
+                Resource.Success(result.toUserModels())
             } else {
                 Resource.Error(response.message())
             }
@@ -82,8 +79,7 @@ class MainRepository @Inject constructor(
             val result = response.body()
 
             if (response.isSuccessful && result != null) {
-                val users = DataConverter.searchUsersToUserModels(result)
-                Resource.Success(users)
+                Resource.Success(result.toUserModels())
             } else {
                 Resource.Error(response.message())
             }

@@ -15,7 +15,7 @@ import id.rllyhz.dicodingsubmissionbfaa.data.model.User
 import id.rllyhz.dicodingsubmissionbfaa.databinding.ActivityUserFavBinding
 import id.rllyhz.dicodingsubmissionbfaa.ui.activity.detail.UserDetailActivity
 import id.rllyhz.dicodingsubmissionbfaa.ui.adapter.UserListAdapter
-import id.rllyhz.dicodingsubmissionbfaa.util.DataConverter
+import id.rllyhz.dicodingsubmissionbfaa.util.toUserModels
 import kotlinx.android.synthetic.main.activity_user_fav.view.*
 
 @AndroidEntryPoint
@@ -66,8 +66,7 @@ class UserFavActivity : AppCompatActivity(), UserListAdapter.ItemClickCallback {
 
         viewModel.getAllUserFavs().observe(this) { userFavs ->
             if (userFavs != null && userFavs.isNotEmpty()) {
-                val users = DataConverter.userFavsToUserModels(userFavs)
-                userFavAdapter.submitList(users)
+                userFavAdapter.submitList(userFavs.toUserModels())
                 setUIState(true)
             } else {
                 setUIState(false)

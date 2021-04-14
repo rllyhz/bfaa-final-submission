@@ -25,13 +25,15 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
         }
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val minute = calendar.get(Calendar.MINUTE)
-        val formatHour24 = true
-        return TimePickerDialog(activity, this, hour, minute, formatHour24)
-    }
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
+        Calendar.getInstance().let {
+            val hour = it.get(Calendar.HOUR_OF_DAY)
+            val minute = it.get(Calendar.MINUTE)
+            val formatHour24 = true
+
+            return TimePickerDialog(activity, this, hour, minute, formatHour24)
+        }
+
 
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
         listener?.onDialogTimeSet(tag, hourOfDay, minute)

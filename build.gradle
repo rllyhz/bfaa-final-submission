@@ -7,7 +7,7 @@ buildscript {
         coroutinesVersion = "1.4.2"
         lifecycleVersion = "2.3.1"
         activityVersion = "1.2.2"
-        navigationVersion = "2.3.4"
+        navigationVersion = "2.3.5"
         retrofitVersion = "2.9.0"
         roomVersion = "2.3.0-rc01"
         hiltAndroidXVersion = "1.0.0-alpha03"
@@ -15,7 +15,6 @@ buildscript {
         glideVersion = "4.12.0"
         fragmentVersion = "1.3.2"
         swipeRefreshLayoutVersion = "1.1.0"
-        shimmerEffectsVersion = "0.5.0"
     }
 
     repositories {
