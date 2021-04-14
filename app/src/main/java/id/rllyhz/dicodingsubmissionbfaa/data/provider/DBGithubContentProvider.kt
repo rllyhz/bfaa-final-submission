@@ -5,9 +5,13 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import id.rllyhz.dicodingsubmissionbfaa.data.local.GithubDatabase
 import id.rllyhz.dicodingsubmissionbfaa.data.local.userfav.UserFavDao
+import javax.inject.Inject
 
-class DBGithubContentProvider : ContentProvider() {
+class DBGithubContentProvider @Inject constructor(
+    private val db: GithubDatabase
+) : ContentProvider() {
 
     private lateinit var userFavDao: UserFavDao
 
@@ -18,7 +22,8 @@ class DBGithubContentProvider : ContentProvider() {
     override fun insert(uri: Uri, values: ContentValues?): Uri? = null
 
     override fun onCreate(): Boolean {
-        TODO("Implement this to initialize your content provider on startup.")
+        userFavDao = db.userFavDao()
+        return false
     }
 
     override fun query(
