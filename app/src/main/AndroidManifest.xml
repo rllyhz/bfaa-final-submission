@@ -18,6 +18,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DicodingSubmissionBFAA">
+
+        <provider
+            android:name=".data.provider.DBGithubContentProvider"
+            android:authorities="id.rllyhz.dicodingsubmissionbfaa"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="id.rllyhz.dicodingsubmissionbfaa.READ_DATABASE" />
+
         <activity android:name=".ui.activity.settings.SettingsActivity" />
         <activity android:name=".ui.activity.userfav.UserFavActivity" />
         <activity android:name=".ui.activity.detail.UserDetailActivity" />
