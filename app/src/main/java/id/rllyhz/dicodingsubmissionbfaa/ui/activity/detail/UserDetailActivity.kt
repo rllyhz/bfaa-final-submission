@@ -228,8 +228,8 @@ class UserDetailActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
+    override fun onDestroy() {
+        super.onDestroy()
 
         userExtra = null
     }
