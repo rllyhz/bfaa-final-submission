@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -27,7 +28,9 @@ class AlarmReceiver : BroadcastReceiver() {
 
     private fun sendAlarmNotification(context: Context, intent: Intent) {
         val message = intent.getStringExtra(EXTRA_MESSAGE)
-        val mainActivityIntent = Intent(context, MainActivity::class.java)
+        val mainActivityIntent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
 
         val pendingIntent =
             PendingIntent.getActivity(
@@ -90,14 +93,12 @@ class AlarmReceiver : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getBroadcast(context, REPEAT_CODE, intent, 0)
 
         alarmManager.setInexactRepeating(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            AlarmManager.INTERVAL_DAY,
+            AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY,
             pendingIntent
         )
 
         ReminderPref(context).apply {
-            this.updateAlarmSetup(true, time)
+            updateAlarmSetup(true, time)
         }
 
         showFeedback(context, context.getString(R.string.settings_reminder_setup_success_message))
@@ -112,7 +113,7 @@ class AlarmReceiver : BroadcastReceiver() {
         alarmManager.cancel(pendingIntent)
 
         ReminderPref(context).apply {
-            this.updateAlarmSetup(false, null)
+            updateAlarmSetup(false, null)
         }
 
         showFeedback(
