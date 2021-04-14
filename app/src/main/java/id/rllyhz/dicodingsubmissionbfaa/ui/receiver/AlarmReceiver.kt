@@ -9,7 +9,6 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -84,16 +83,24 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val timeArray = time.split(":").toTypedArray()
 
-        val calendar = Calendar.getInstance().apply {
+        val calendarNow = Calendar.getInstance().apply {
+            setTime(Date())
+        }
+
+        val calendarAlarm = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeArray[0]))
             set(Calendar.MINUTE, Integer.parseInt(timeArray[1]))
             set(Calendar.SECOND, 0)
         }
 
+        if (calendarAlarm.before(calendarNow)) {
+            calendarAlarm.add(Calendar.DATE, 1)
+        }
+
         val pendingIntent = PendingIntent.getBroadcast(context, REPEAT_CODE, intent, 0)
 
         alarmManager.setInexactRepeating(
-            AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY,
+            AlarmManager.RTC_WAKEUP, calendarAlarm.timeInMillis, AlarmManager.INTERVAL_DAY,
             pendingIntent
         )
 
