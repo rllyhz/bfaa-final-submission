@@ -2,15 +2,16 @@ package id.rllyhz.dicodingsubmissionbfaa.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import id.rllyhz.dicodingsubmissionbfaa.R
 import id.rllyhz.dicodingsubmissionbfaa.ui.activity.main.MainActivity
 import java.util.*
-import kotlin.concurrent.schedule
 
 class SplashScreenActivity : AppCompatActivity() {
-    private var timer: Timer? = null
+    private lateinit var runnable: Runnable
+    private lateinit var handler: Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,33 +25,22 @@ class SplashScreenActivity : AppCompatActivity() {
             ContextCompat.getColor(applicationContext, R.color.background_color_dark)
         supportActionBar?.hide()
 
-        timer = Timer()
-
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        timer?.schedule(DELAY_TIME_IN_MILLIS) {
-            startActivity(
-                Intent(this@SplashScreenActivity, MainActivity::class.java)
-            )
-
+        runnable = Runnable {
+            startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
             finish()
-        }
-    }
 
-    override fun onPause() {
-        super.onPause()
-        timer?.cancel()
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        }
+
+        handler = Handler(mainLooper).apply {
+            postDelayed(runnable, DELAY_TIME_IN_MILLIS)
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        if (timer != null)
-            timer = null
+        handler.removeCallbacks(runnable)
     }
 
     companion object {
