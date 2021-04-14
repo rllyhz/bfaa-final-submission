@@ -56,8 +56,13 @@ class MainActivity : AppCompatActivity() {
                 viewModel.getAllUserFavs()
             }
         }
+    }
 
-        // load in the first time
+    override fun onStart() {
+        super.onStart()
+
+        // load in the first time and
+        // everytime UI in the foreground
         viewModel.getAllUserFavs()
     }
 
