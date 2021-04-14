@@ -2,10 +2,14 @@ package id.rllyhz.dicodingsubmissionbfaa.data.provider
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import id.rllyhz.dicodingsubmissionbfaa.data.local.userfav.UserFavDao
 
 class DBGithubContentProvider : ContentProvider() {
+
+    private lateinit var userFavDao: UserFavDao
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int = 0
 
@@ -28,4 +32,16 @@ class DBGithubContentProvider : ContentProvider() {
         uri: Uri, values: ContentValues?, selection: String?,
         selectionArgs: Array<String>?
     ): Int = 0
+
+
+    companion object {
+        private const val AUTHORITY = "id.rllyhz.dicodingsubmissionbfaa"
+        private const val EXPORTED_TABLE_NAME = "user_fav_table"
+        const val ID_FAVOURITE_USER_DATA = 1
+        val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+
+        init {
+            uriMatcher.addURI(AUTHORITY, EXPORTED_TABLE_NAME, ID_FAVOURITE_USER_DATA)
+        }
+    }
 }
