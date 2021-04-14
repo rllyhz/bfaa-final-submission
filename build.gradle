@@ -6,6 +6,7 @@ buildscript {
 
         coroutinesVersion = "1.4.2"
         lifecycleVersion = "2.3.1"
+        activityVersion = "1.2.2"
         navigationVersion = "2.3.4"
         retrofitVersion = "2.9.0"
         roomVersion = "2.3.0-rc01"
