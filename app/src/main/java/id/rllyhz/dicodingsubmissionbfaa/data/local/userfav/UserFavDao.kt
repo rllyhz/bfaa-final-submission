@@ -1,5 +1,6 @@
 package id.rllyhz.dicodingsubmissionbfaa.data.local.userfav
 
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -19,4 +20,7 @@ interface UserFavDao {
 
     @Query("DELETE FROM user_fav_table WHERE userId = :userId")
     suspend fun remove(userId: Int)
+
+    @Query("SELECT * FROM user_fav_table")
+    fun getAllUserFavsInCursor(): Cursor
 }
