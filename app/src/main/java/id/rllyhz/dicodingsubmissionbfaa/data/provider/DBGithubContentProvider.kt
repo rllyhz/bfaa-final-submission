@@ -5,13 +5,14 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.components.SingletonComponent
 import id.rllyhz.dicodingsubmissionbfaa.data.local.GithubDatabase
 import id.rllyhz.dicodingsubmissionbfaa.data.local.userfav.UserFavDao
-import javax.inject.Inject
 
-class DBGithubContentProvider @Inject constructor(
-    private val db: GithubDatabase
-) : ContentProvider() {
+class DBGithubContentProvider : ContentProvider() {
 
     private lateinit var userFavDao: UserFavDao
 
@@ -28,6 +29,13 @@ class DBGithubContentProvider @Inject constructor(
     ): Int = -1
 
     override fun onCreate(): Boolean {
+        // Hilt doesn't directly support content provider
+        // but this is an alternative way given by google
+        val appContext = context?.applicationContext ?: throw IllegalStateException()
+        val hiltEntryPoint =
+            EntryPointAccessors.fromApplication(appContext, ContentProviderEntryPoint::class.java)
+
+        val db = hiltEntryPoint.getDB()
         userFavDao = db.userFavDao()
         return false
     }
@@ -48,6 +56,13 @@ class DBGithubContentProvider @Inject constructor(
                 null
             }
         }
+
+
+    @EntryPoint
+    @InstallIn(SingletonComponent::class)
+    interface ContentProviderEntryPoint {
+        fun getDB(): GithubDatabase
+    }
 
 
     companion object {
