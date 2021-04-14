@@ -142,7 +142,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
         const val EXTRA_MESSAGE = "EXTRA_MESSAGE"
 
-        private const val CHANNEL_ID = "id.rllyhz.dicodingsubmissionbfaa.ui.receiver.alarmReceiver"
+        private const val CHANNEL_ID = "CHANNEL_ID_1"
         private const val CHANNEL_NAME = "Reminder Github"
         private const val REPEAT_CODE = 101
     }
