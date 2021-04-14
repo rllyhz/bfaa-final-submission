@@ -15,11 +15,17 @@ class DBGithubContentProvider @Inject constructor(
 
     private lateinit var userFavDao: UserFavDao
 
-    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int = 0
+    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int =
+        -1 // no implementation
 
     override fun getType(uri: Uri): String? = null
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? = null
+
+    override fun update(
+        uri: Uri, values: ContentValues?, selection: String?,
+        selectionArgs: Array<String>?
+    ): Int = -1
 
     override fun onCreate(): Boolean {
         userFavDao = db.userFavDao()
@@ -29,14 +35,19 @@ class DBGithubContentProvider @Inject constructor(
     override fun query(
         uri: Uri, projection: Array<String>?, selection: String?,
         selectionArgs: Array<String>?, sortOrder: String?
-    ): Cursor? {
-        TODO("Implement this to handle query requests from clients.")
-    }
-
-    override fun update(
-        uri: Uri, values: ContentValues?, selection: String?,
-        selectionArgs: Array<String>?
-    ): Int = 0
+    ): Cursor? =
+        when (uriMatcher.match(uri)) {
+            ID_FAVOURITE_USER_DATA -> {
+                val cursor: Cursor = userFavDao.getAllUserFavsInCursor()
+                context?.let {
+                    cursor.setNotificationUri(it.contentResolver, uri)
+                }
+                cursor
+            }
+            else -> {
+                null
+            }
+        }
 
 
     companion object {
