@@ -94,4 +94,9 @@
     <string name="toolbar_menu_item_settings_label">Pengaturan</string>
     <string name="toolbar_menu_item_user_fav_label">Pengguna Favorit</string>
     <string name="splash_screen_logo_image_content_desc">Gambar Logo Splash Screen</string>
+    <string name="key_language">language</string>
+    <string name="language">Bahasa</string>
+    <string name="language_summary">Inggris</string>
+    <string name="key_reminder">reminder</string>
+    <string name="reminder">Aktifkan pengingat harian</string>
 </resources>
