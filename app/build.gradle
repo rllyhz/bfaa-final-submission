@@ -83,7 +83,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
     // preference compat
-    implementation "androidx.preference:preference:$preferenceVersion"
+    implementation "androidx.preference:preference-ktx:$preferenceVersion"
 
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:$hiltVersion"
