@@ -3,6 +3,8 @@
 
 This repository is the result of my submission project in [Dicoding Academy](https://www.dicoding.com) class, **Learn Fundamental Android Application** that implements MVVM(Model View ViewModel) architecture using the components ViewModel, LiveData, Dagger2, Room, Retrofit, etc. </br>
 
+This project got 5 stars 🎉🎉
+
 You can clone this repo and import to your Android Studio
 
 ```
